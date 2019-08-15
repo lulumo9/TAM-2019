@@ -10,17 +10,15 @@ public class Guessing {
         Random random = new Random();
         int systemNumber = random.nextInt(6); //Estoy diciendo que del 0 al 50
 
-        Boolean playAgain = true;
-        String inputAnswer = "";
-
-
+        boolean playAgain = true;
+        String inputAnswer;
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Welcome!");
-        System.out.println("Try to guess the number that system has selected randomly!, Enter a number from 0 to 50: ");
-
-
         while (playAgain) {
+
+            System.out.println("Welcome!");
+            System.out.println("Try to guess the number that system has selected randomly!, Enter a number from 0 to 50: ");
+
 
             int inputNumber = scanner.nextInt();
 
@@ -39,8 +37,3 @@ public class Guessing {
         }
     }
 }
-
-
-
-
-

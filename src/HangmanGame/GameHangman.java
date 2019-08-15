@@ -4,6 +4,12 @@ import java.util.*;
 
 public class GameHangman {
 
+    //    private static char [] selected;
+//    private static char [] selected;
+//    private static char [] selected;
+    private String hasd;
+
+
     public static boolean checkingIfWordCompleted(char[] inputs) {
         for (int i = 0; i < inputs.length; i++) {
             if (inputs[i] == '_') {
@@ -21,17 +27,18 @@ public class GameHangman {
     }
 
     public static boolean fillingEntered(char[] selected, char input, char[] inputs) {
+
+        boolean alreadyExisted = false;
         for (int i = 0; i < selected.length; i++) {
             if (selected[i] == input) {
                 inputs[i] = input;
-                return true;
             }
         }
-        return false;
+        return alreadyExisted;
     }
 
 
-        public static void main(String[] args) {
+    public static void main(String[] args) {
 
         boolean wordGuessed = false;
         List<String> animals = Arrays.asList("elephant", "kangaroo", "octopus", "dolphin", "chimpanzee");
