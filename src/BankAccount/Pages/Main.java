@@ -1,4 +1,4 @@
-package BankAccount;
+package BankAccount.Pages;
 
 public class Main {
 

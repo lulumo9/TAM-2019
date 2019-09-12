@@ -1,4 +1,4 @@
-package BankAccount;
+package BankAccount.Pages;
     /**
      * This exception will throw if the account status is frozen, and debit is still calling.
      */

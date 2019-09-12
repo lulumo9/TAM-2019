@@ -1,4 +1,4 @@
-package BankAccount;
+package BankAccount.Pages;
 
 import java.text.MessageFormat;
 

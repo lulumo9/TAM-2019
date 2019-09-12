@@ -1,5 +1,7 @@
-package BankAccount;
+package BankAccount.Tests;
 
+import BankAccount.Pages.AccountFrozenException;
+import BankAccount.Pages.BankAccount;
 import org.junit.Assert;
 import org.junit.Test;
 
