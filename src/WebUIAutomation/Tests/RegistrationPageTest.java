@@ -1,5 +1,6 @@
 package WebUIAutomation.Tests;
 
+import WebUIAutomation.Config.ConfigReader;
 import WebUIAutomation.DriverInitiation;
 import WebUIAutomation.Pages.LoginPage;
 import WebUIAutomation.Pages.RegistrationPage;
@@ -9,9 +10,8 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class RegistrationPageTest {
+public class RegistrationPageTest extends ConfigReader {
 
-    static By accountHeader = By.xpath("//*[@id=\"player-info\"]/div");
     static By aNumberField = By.xpath("//*[@id=\"account-box\"]/form/div[7]/input");
 
     @Before
@@ -20,21 +20,22 @@ public class RegistrationPageTest {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\Luisa_Fernanda_Munoz\\Downloads\\SELENIUM\\chromedriver_win32\\chromedriver.exe");
         DriverInitiation.startingBrowser();
         LoginPage.clickingSingupLink();
+        ConfigReader.loadData();
     }
 
     @Test
     public void registrationSuccessful()
     {
-        RegistrationPage.fillingForm("Test123", "ATM2019", "987654321","Test123", "Test123" );
+        RegistrationPage.fillingForm(ConfigReader.getNewUserName(), ConfigReader.getNewName(), ConfigReader.getNewAccountNumber(), ConfigReader.getNewPassword(), ConfigReader.getNewPassword2());
         RegistrationPage.clickingSaveButton();
-        Assert.assertTrue ("Unable to register", DriverInitiation.driver.findElement(accountHeader).isDisplayed());
+        Assert.assertTrue ("Unable to register", DriverInitiation.driver.findElement(By.xpath("//*[@id=\"player-info\"]/div")).isDisplayed());
         System.out.println("User has registered successfully, account details are shown");
     }
 
     @Test
     public void unableToRegisterAlreadyExistingOne()
     {
-        RegistrationPage.fillingForm("Test123", "ATM2019", "987654321","Test123", "Test123" );
+        RegistrationPage.fillingForm(ConfigReader.getNewUserName(), ConfigReader.getNewName(), ConfigReader.getNewAccountNumber(), ConfigReader.getNewPassword(), ConfigReader.getNewPassword2());
         RegistrationPage.clickingSaveButton();
         WebElement existingNotification = DriverInitiation.driver.findElement(By.xpath("//*[@id=\"account-box\"]/form/div[3]"));
         String textExisting = existingNotification.getAttribute("innerHTML");                                           //Using 'innerHTML' to get the exact message that is displayed
@@ -43,7 +44,7 @@ public class RegistrationPageTest {
     }
 
     @Test
-    public void unableToRegisterWithEmptyFields() //Ask Zsuzsi what is the most efficient and fastest way to check for every individual textbox or at least those mandatories
+    public void unableToRegisterWithEmptyFields()
     {
         RegistrationPage.clickingSaveButton();
         String mss = DriverInitiation.driver.findElement(By.name("userName")).getAttribute("validationMessage");
@@ -54,7 +55,7 @@ public class RegistrationPageTest {
     @Test
     public void unableToEnterStringCharacterOnAccountNumberField()
     {
-        DriverInitiation.driver.findElement(aNumberField).sendKeys("123");
+        DriverInitiation.driver.findElement(aNumberField).sendKeys("ABC");
         WebElement validANNotification = DriverInitiation.driver.findElement(By.xpath("//*[@id=\"account-box\"]/form/div[8]"));
         String textExisting = validANNotification.getAttribute("innerHTML");
         Assert.assertTrue("Something went wrong!", textExisting.contentEquals("Please enter valid account number"));

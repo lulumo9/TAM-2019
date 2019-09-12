@@ -1,5 +1,6 @@
 package WebUIAutomation.Tests;
 
+import WebUIAutomation.Config.ConfigReader;
 import WebUIAutomation.DriverInitiation;
 import WebUIAutomation.Pages.LoginPage;
 import org.junit.Assert;
@@ -8,7 +9,11 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class LoginPageTest {
+import java.util.Properties;
+
+public class LoginPageTest extends ConfigReader {
+
+    Properties properties = new Properties();
 
     static By accountHeader = By.xpath("//*[@id=\"player-info\"]/div");
 
@@ -17,6 +22,7 @@ public class LoginPageTest {
     {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\Luisa_Fernanda_Munoz\\Downloads\\SELENIUM\\chromedriver_win32\\chromedriver.exe");
         DriverInitiation.startingBrowser();
+        ConfigReader.loadData();                        //I am calling the config file from the beginning of the test
     }
 
     @Test
@@ -26,15 +32,6 @@ public class LoginPageTest {
         Assert.assertTrue ("Something went wrong!", webTitle.contentEquals("SportsBet Login"));
         //Assert.assertTrue ("Something went wrong!", DriverInitiation.driver.findElement(By.xpath("/html/body/header")).isDisplayed());
         System.out.println("Login page is displayed, please proceed to sign up or sign in");
-    }
-
-    @Test
-    public void ableToLogin()
-    {
-        LoginPage.UserAndPasswordInput("lulumo", "ATM2019");
-        LoginPage.clickingLoginButton();
-        Assert.assertTrue ("Unable to login", DriverInitiation.driver.findElement(accountHeader).isDisplayed());
-        System.out.println("User has login, account details are shown");
     }
 
     @Test
@@ -56,9 +53,18 @@ public class LoginPageTest {
     }
 
     @Test
+    public void ableToLogin()
+    {
+        LoginPage.UserAndPasswordInput(ConfigReader.getAlreadyRegisterUserName(), ConfigReader.getAlreadyRegisterPassword());
+        LoginPage.clickingLoginButton();
+        Assert.assertTrue ("Unable to login", DriverInitiation.driver.findElement(accountHeader).isDisplayed());
+        System.out.println("User has login, account details are shown");
+    }
+
+    @Test
     public void UnableToLoginWithIncorrectCredentials()
     {
-        LoginPage.UserAndPasswordInput("lulumo", "Testing123");
+        LoginPage.UserAndPasswordInput(ConfigReader.getAlreadyRegisterUserName(), ConfigReader.getIncorrectPassword());
         LoginPage.clickingLoginButton();
         Assert.assertTrue(DriverInitiation.driver.findElement(By.xpath("//*[@id=\"userinfo\"]/form/fieldset/div")).isEnabled());
         System.out.println("Unable to login with incorrect credentials");
