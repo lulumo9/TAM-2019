@@ -17,7 +17,10 @@ public class RegistrationPage {
     static By pssConfirmedField = By.xpath("//*[@id=\"account-box\"]/form/div[12]/input");
     static By saveButton = By.xpath("//*[@id=\"account-box\"]/form/button");
     static By feedbackButton = By.xpath("//*[@id=\"account-box\"]/button");
-    static By showButton = By.xpath("//*[@id=\"account-box\"]/div[3]/button]");
+    static By showButton = By.xpath("//*[@id=\"account-box\"]/div[3]/button");
+    public static By feedBackBox = By.xpath("//*[@id=\"account-box\"]/div[2]/div");
+    public static By showText = By.id("additionalText");
+
 
     public static By registerNotification = By.xpath("//*[@id=\"account-box\"]/form/div[7]/input");
     public static By accountHeader = By.xpath("//*[@id=\"player-info\"]/div");

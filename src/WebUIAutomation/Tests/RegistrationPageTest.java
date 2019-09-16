@@ -54,6 +54,22 @@ public class RegistrationPageTest extends TestBase {
         }
         System.out.println("Password fields must match");
     }
+
+    @Test
+    public void ableToProvideFeedback()
+    {
+        RegistrationPage.clickingFeedbackButton();
+        Assert.assertTrue("Something went wrong", DriverInitiation.driver.findElement(RegistrationPage.feedBackBox).isDisplayed());
+        System.out.println("Feedback textbox is shown");
+    }
+
+    @Test
+    public void textShowIsDisplayed()
+    {
+        RegistrationPage.clickingShowButton();
+        Assert.assertTrue("Something went wrong", DriverInitiation.driver.findElement(RegistrationPage.showText).isDisplayed());
+        System.out.println("Additional text is shown");
+    }
 }
 
 
