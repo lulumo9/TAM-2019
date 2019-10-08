@@ -8,7 +8,9 @@ import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Before;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Properties;
 
 public class BaseClass {
 
@@ -16,13 +18,25 @@ public class BaseClass {
     public CloseableHttpResponse response;
     public static final String BASE_ENDPOINT = "http://dummy.restapiexample.com/api/v1";
 
+    public Properties properties = new Properties();
+    {
+        try {
+            //Loading the config properties file
+            properties.load(new FileInputStream("C:\\Users\\Luisa_Fernanda_Munoz\\Documents\\Mentoring\\TAM-2019\\src\\main\\java\\WebAPIAutomation\\Tests\\config.properties"));
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Before
     public void setUp()
     {
         client = HttpClientBuilder.create().build();
     }
 
-    public void isStatusCode200() {
+    public void checkStatusCode() {
 
         int actualStatus = response.getStatusLine().getStatusCode();
         Assert.assertEquals(200, actualStatus);

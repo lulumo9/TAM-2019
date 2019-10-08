@@ -17,6 +17,6 @@ public class AllEmployeeData extends BaseClass {
         returnBodyText();
 
         //Checking status code
-        isStatusCode200();
+        checkStatusCode();
     }
 }

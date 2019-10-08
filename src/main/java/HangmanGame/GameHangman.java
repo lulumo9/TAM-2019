@@ -32,6 +32,7 @@ public class GameHangman {
         for (int i = 0; i < selected.length; i++) {
             if (selected[i] == input) {
                 inputs[i] = input;
+                alreadyExisted = true;
             }
         }
         return alreadyExisted;

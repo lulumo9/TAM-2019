@@ -13,7 +13,7 @@ import java.io.IOException;
 public class EmployeeDataWithJSONAssert extends BaseClass
 {
     @Test
-    public void returnEmployeeDataWithJSONAssert() throws IOException
+    public void testEmployeeDataWithJSONAssert() throws IOException
     {
         HttpGet get = new HttpGet(BASE_ENDPOINT + "/employee/105011");
         response = client.execute(get);

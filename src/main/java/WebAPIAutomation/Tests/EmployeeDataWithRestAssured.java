@@ -36,6 +36,7 @@ public class EmployeeDataWithRestAssured extends BaseClass {
         // Use the JsonPath parsing library of RestAssured to Parse the JSON
         JsonPath jsonPath = new JsonPath(json);
         Assert.assertEquals("105011", jsonPath.getString(EMPLOYEE_ID));
+
     }
 
     @Test
