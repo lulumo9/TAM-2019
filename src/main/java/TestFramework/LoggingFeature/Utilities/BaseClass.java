@@ -1,5 +1,6 @@
 package TestFramework.LoggingFeature.Utilities;
 
+import TestFramework.LoggingFeature.Pages.AllEmployeeData;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -14,10 +15,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-public class BaseClass {
+public abstract class BaseClass {
 
-
-    public static Logger logger = LogManager.getLogger(BaseClass.class);
+    public static Logger logger = LogManager.getLogger(AllEmployeeData.class);
     public CloseableHttpClient client;
     public CloseableHttpResponse response;
     public static final String BASE_ENDPOINT = "http://dummy.restapiexample.com/api/v1";
@@ -26,7 +26,7 @@ public class BaseClass {
     {
         try {
             //Loading the config properties file
-            properties.load(new FileInputStream("C:\\Users\\Luisa_Fernanda_Munoz\\Documents\\Mentoring\\TAM-2019\\src\\main\\java\\WebAPIAutomation\\Tests\\config.properties"));
+            properties.load(new FileInputStream("C:\\Users\\Luisa_Fernanda_Munoz\\Documents\\Mentoring\\TAM-2019\\src\\main\\java\\TestFramework\\LoggingFeature\\Pages\\config.properties"));
 
 
         } catch (IOException e) {

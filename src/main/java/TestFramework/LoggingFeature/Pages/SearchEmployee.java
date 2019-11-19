@@ -1,4 +1,4 @@
-package TestFramework.LoggingFeature.Tests;
+package TestFramework.LoggingFeature.Pages;
 
 import WebAPIAutomation.Utilities.BaseClass;
 import org.apache.http.client.methods.HttpGet;

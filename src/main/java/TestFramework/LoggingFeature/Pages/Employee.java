@@ -1,4 +1,4 @@
-package TestFramework.LoggingFeature.Utilities;
+package TestFramework.LoggingFeature.Pages;
 
 public class Employee {
 
